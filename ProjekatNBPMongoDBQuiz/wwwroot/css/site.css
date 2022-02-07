@@ -1,71 +1,65 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-for details on configuring this project to bundle and minify static web assets. */
-
-a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
-}
-
-/* Provide sufficient contrast against white background */
-a {
-  color: #0366d6;
-}
-
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
-}
-
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
-}
-
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  font-size: 14px;
-}
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.border-top {
-  border-top: 1px solid #e5e5e5;
-}
-.border-bottom {
-  border-bottom: 1px solid #e5e5e5;
-}
-
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
-}
-
-button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
-}
-
-/* Sticky footer styles
--------------------------------------------------- */
+﻿
 html {
   position: relative;
   min-height: 100%;
 }
 
-body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
-}
 .footer {
   position: absolute;
   bottom: 0;
   width: 100%;
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
+}
+
+
+
+body {
+    background: rgb(14,10,52);
+    background: linear-gradient(45deg, rgba(14,10,52,1) 0%, rgba(27,20,100,1) 100%);
+    font-family: 'Patrick Hand', cursive;
+}
+
+.main-container {
+    height: 80%;
+}
+
+.navbar {
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+}
+
+.navbar-brand {
+    color: #FFC312;
+    font-size: 32px;
+}
+
+.nav-link {
+    color: #dfe6e9;
+    /* transition: font-size 0.5s;*/
+    font-size: 20px;
+    transform: scale(1.0);
+    transition: transform 0.3s ease-out;
+}
+
+.nav-link:hover {
+    color: #FFC312;
+    /* transition: font-size 0.5s;
+    font-size: 24px; */
+    transform: scale(1.2);
+    transition: transform 0.3s;
+}
+
+.login-form {
+    font-size: 20px;
+}
+
+.form-bg {
+    background-color: #FFF;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px #0005;
+}
+
+.btn-back {
+    background-color: #1B1464;
 }
