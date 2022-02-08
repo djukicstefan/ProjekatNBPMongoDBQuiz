@@ -7,28 +7,30 @@
         <div class="col-4 form-bg mx-auto">
             <form asp-action="TryRegister" asp-controller="User" class="register-form py-3">
                 <div class="form-group">
+                    <label style="color:red">@ViewBag.UMessage</label>
                     <label for="register-username">Korisničko ime</label>
-                    <input type="text" class="form-control" name="username" id="register-username" placeholder="Korisničko ime...">
+                    <input type="text" class="form-control" name="username" id="register-username" placeholder="Korisničko ime..." value="@ViewBag.Username">
                 </div>
                 <div class="form-group mt-2">
                     <label for="register-email">Email adresa</label>
-                    <input type="email" class="form-control" name="email" id="register-email" placeholder="Email adresa...">
+                    <input type="email" class="form-control" name="email" id="register-email" placeholder="Email adresa..." value="@ViewBag.Email">
                 </div>
                 <div class="form-group mt-2">
                     <label for="register-city">Grad</label>
-                    <input type="text" class="form-control" name="city" id="register-city" placeholder="Grad...">
+                    <input type="text" class="form-control" name="city" id="register-city" placeholder="Grad..." value="@ViewBag.City">
                 </div>
                 <div class="form-group mt-2">
                     <label for="register-phone">Broj telefona</label>
-                    <input type="text" class="form-control" name="phone" id="register-phone" placeholder="Broj telefona...">
+                    <input type="text" class="form-control" name="phone" id="register-phone" placeholder="Broj telefona..." value="@ViewBag.Phone">
                 </div>
+                <label style="color: red">@ViewBag.PMessage</label>
                 <div class="form-group">
                     <label for="register-password">Lozinka</label>
                     <input type="password" class="form-control" name="password" id="register-password" placeholder="Lozinka...">
                 </div>
                 <div class="form-group">
                     <label for="register-confirm-password">Potvrdite lozinku</label>
-                    <input type="password" class="form-control" id="register-confirm-password" placeholder="Potvrdite lozinku...">
+                    <input type="password" class="form-control" name="repassword" id="register-confirm-password" placeholder="Potvrdite lozinku...">
                 </div>
                 <button type="submit" class="btn btn-primary">Registruj se</button>
                 <a asp-controller="User" asp-action="Login" class="btn">Prijavi se</a>

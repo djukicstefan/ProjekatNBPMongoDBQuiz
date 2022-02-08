@@ -6,6 +6,7 @@
     <div class="row align-self-center w-100">
         <div class="col-4 form-bg mx-auto">
             <form asp-controller="User" asp-action="TryLogin" class="login-form py-3">
+                <label style="color: red">@ViewBag.MyMessage</label>
                 <div class="form-group">
                     <label for="login-username">Korisničko ime</label>
                     <input type="text" class="form-control" name="username" id="login-username" placeholder="Korisničko ime...">

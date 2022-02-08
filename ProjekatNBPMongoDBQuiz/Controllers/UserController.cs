@@ -21,20 +21,58 @@ namespace ProjekatNBPMongoDBQuiz.Controllers
             return View();
         }
 
-        public IActionResult Register()
+        public IActionResult Register(bool passfail = false, bool exist = false)
         {
+            if(exist)
+            {
+                ViewBag.Username = TempData["Username"] as string;
+                ViewBag.Email = TempData["Email"] as string;
+                ViewBag.City = TempData["City"] as string;
+                ViewBag.Phone = TempData["Phone"] as string;
+                ViewBag.UMessage = "Postoji korisnik sa datim korisničkim imenom u bazi!";
+                return View();
+            }
+            else if(passfail)
+            {
+                ViewBag.Username = TempData["Username"] as string;
+                ViewBag.Email = TempData["Email"] as string;
+                ViewBag.City = TempData["City"] as string;
+                ViewBag.Phone = TempData["Phone"] as string;
+                ViewBag.PMessage = "Lozinke se ne poklapaju!";                
+            }
             return View();
         }
 
-        public IActionResult Login()
+        public IActionResult Login(bool exist = true)
         {
+            if (!exist)
+                ViewBag.MyMessage = "Ne postoji korisnik sa datim korisničkim imenom i lozinkom u bazi";
             return View();
         }
 
-        public async Task<IActionResult> TryRegister(string username, string email, string city, string phone, string password)
+        public async Task<IActionResult> TryRegister(string username, string email, string city, string phone, string password, string repassword)
         {
             if (HttpContext.Session.IsLoggedIn())
                 return RedirectToAction("Index", "Home");
+
+            if(password.CompareTo(repassword) != 0)
+            {
+                TempData["Username"] = username;
+                TempData["Email"] = email;
+                TempData["City"] = city;
+                TempData["Phone"] = phone;
+                return RedirectToAction("Register", "User", new { passfail = true });
+            }
+
+            var listUsers = await _userService.GetUsersAsync();
+            if(listUsers.Any(x => x.Username == username))
+            {
+                TempData["Username"] = username;
+                TempData["Email"] = email;
+                TempData["City"] = city;
+                TempData["Phone"] = phone;
+                return RedirectToAction("Register", "User", new { exist = true });
+            }
 
             await _userService.AddUserAsync(new User
             {
@@ -54,13 +92,13 @@ namespace ProjekatNBPMongoDBQuiz.Controllers
                 return RedirectToAction("Index", "Home");
             }
             else
-                return RedirectToAction("Register", "Home");            
+                return RedirectToAction("Register", "User");            
         }
 
         public async Task<IActionResult> TryLogin(string username, string password)
         {
             if (HttpContext.Session.IsLoggedIn())
-                return RedirectToAction("Login", "Home");
+                return RedirectToAction("Index", "Home");
 
             User user = await _userService.GetUserAsync(username, password);
 
@@ -72,18 +110,51 @@ namespace ProjekatNBPMongoDBQuiz.Controllers
             }
             else
             {
-                return RedirectToAction("Register", "Home");
+                return RedirectToAction("Login", "User", new { exist = false }) ;
             }
         }
 
         public IActionResult Logout()
         {
             if (!HttpContext.Session.IsLoggedIn())
-                return RedirectToAction("Login", "Home");
+                return RedirectToAction("Login", "User");
 
             HttpContext.Session.Clear();
 
             return RedirectToAction("Index", "Home");
+        }
+
+        public async Task<IActionResult> Profile(bool passfailed = false)
+        {            
+            var userId = HttpContext.Session.GetUserId();
+            var user = await _userService.GetUserByIdAsync(userId);
+
+            if (passfailed)
+                ViewBag.Message = "Neuspešna izmena lozinke zbog nepoklapanja!";
+
+            return View(user);                       
+        }
+
+        public async Task<IActionResult> ChangeData(string id, string username, string email, string city, string phone, string password1, string password, string repassword)
+        {
+            var newPass = password1;
+            if (!string.IsNullOrEmpty(password) && password.CompareTo(repassword) == 0)
+                newPass = password;
+
+            await _userService.UpdateUserAsync(new User
+            {
+                Id = id,
+                Username = username,
+                Password = newPass,
+                Phone = phone,
+                Email = email,
+                City = city
+            });
+
+            if (!string.IsNullOrEmpty(password) && password.CompareTo(repassword) != 0)
+                return RedirectToAction("Profile", "User", new { passfailed = true });
+
+            return RedirectToAction("Profile", "User");
         }
     }
 }
