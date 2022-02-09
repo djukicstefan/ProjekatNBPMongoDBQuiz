@@ -10,7 +10,7 @@ namespace ProjekatNBPMongoDBQuiz.Models
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
         public string Title { get; set; }
-        public string Type { get; set; }
+        public string Categorie { get; set; }
         public User User { get; set; }
         public List<Question> Questions { get; set; }
         
