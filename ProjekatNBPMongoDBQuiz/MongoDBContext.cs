@@ -25,5 +25,8 @@ namespace ProjekatNBPMongoDBQuiz
 
         public IMongoCollection<Quiz> QuizCollection 
             => _mongoDB.GetCollection<Quiz>("Quiz");
+
+        public IMongoCollection<Answer> AnswerCollection
+            => _mongoDB.GetCollection<Answer>("Answer");
     }
 }

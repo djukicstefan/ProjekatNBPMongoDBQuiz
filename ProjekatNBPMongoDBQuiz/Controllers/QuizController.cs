@@ -16,15 +16,15 @@ namespace ProjekatNBPMongoDBQuiz.Controllers
         
         public IActionResult Index() => View();
 
-        public IActionResult CreateQuiz(string authorId, string description, string type, Question[] questions)
+        public IActionResult CreateQuiz(string title, string type)
         {
-            _quizService.AddQuizAsync(new Quiz()
-            {
-                AuthorId = authorId,
-                Type = type,
-                Description = description,
-                Questions = questions.ToList()
-            });
+            //_quizService.AddQuizAsync(new Quiz()
+            //{
+            //    AuthorId = authorId,
+            //    Type = type,
+            //    Description = description,
+            //    Questions = questions.ToList()
+            //});
 
             return RedirectToAction("Index", "Home");
         }
