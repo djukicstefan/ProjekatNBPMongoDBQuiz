@@ -6,6 +6,14 @@
     <div class="row align-self-center w-100">
         <div class="col-4 form-bg mx-auto">
             <h3> Hello </h3>
+            @Html.ActionLink("Create test quiz",
+                      "CreateQuiz", "Quiz",
+                      new
+                      {
+                          authorId = "Damir",
+                          description = "Test description.",
+                          type = "Computer Science"
+                      });
         </div>
     </div>
 </div>
