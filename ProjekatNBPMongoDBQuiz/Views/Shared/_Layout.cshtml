@@ -31,9 +31,13 @@
                     <li class="nav-item active">
                         <a class="nav-link" asp-controller="Home" asp-action="Index">Home<span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Quizez</a>
-                    </li>
+                    @if (isLoged)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Quiz" asp-action="Index">Napravi kviz</a>
+                        </li>
+                    }
+
                 </ul>
 
                 <ul class="navbar-nav my-2 my-lg-0">

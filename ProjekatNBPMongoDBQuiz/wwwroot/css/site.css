@@ -63,3 +63,30 @@ body {
 .btn-back {
     background-color: #1B1464;
 }
+
+.question-card {
+    font-size: 20px;
+}
+
+.btn-plus,
+.btn-plus-q {
+    font-family: none;
+    font-weight: bold;
+    font-size: 32px;
+}
+
+.btn-plus {
+    color: #dfe6e9;
+    background-color: #dfe6e988;
+}
+
+.btn-plus-q {
+    color: #dfe6e9;
+    background-color: #009432;
+    border: 1px solid #009432;
+}
+
+.form-check-input {
+    width: 16px;
+    height: 16px;
+}

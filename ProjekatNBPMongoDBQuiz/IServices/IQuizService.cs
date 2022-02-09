@@ -9,7 +9,7 @@ namespace ProjekatNBPMongoDBQuiz.IServices
         public Task<List<Quiz>> GetQuizzesAsync();
         public Task AddQuizAsync(Quiz quiz);
         public Task<Quiz> GetQuizByIdAsync(string id);
-        public Task UpdateQuiyAsync(Quiz quiz);
+        public Task UpdateQuizAsync(Quiz quiz);
         public Task DeleteQuizAsync(string id);
     }
 }

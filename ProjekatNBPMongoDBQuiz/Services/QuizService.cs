@@ -21,10 +21,11 @@ namespace ProjekatNBPMongoDBQuiz.Services
         public async Task<Quiz> GetQuizByIdAsync(string id)
             => await _dbContext.QuizCollection.FindSync(p => p.Id == id).FirstOrDefaultAsync();
 
-        public async Task UpdateQuiyAsync(Quiz quiz)
+        public async Task UpdateQuizAsync(Quiz quiz)
             => await _dbContext.QuizCollection.ReplaceOneAsync(g => g.Id == quiz.Id, quiz);
 
         public async Task DeleteQuizAsync(string id) 
             => await _dbContext.QuizCollection.DeleteOneAsync(p => p.Id == id);
+        
     }
 }
