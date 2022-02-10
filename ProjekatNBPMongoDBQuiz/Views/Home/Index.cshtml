@@ -32,7 +32,7 @@ else
                         <h5 class="card-title">Autor: @quiz.Username</h5>
                         <h6 class="card-subtitle mb-2 text-muted">Kategorija: @quiz.Quiz.Category</h6>
                         <h6 class="card-subtitle mb-2 text-muted">Broj pitanja: @quiz.Quiz.Questions.Count</h6>
-                        <a class="btn btn-primary">Odigraj</a>
+                        <a class="btn btn-primary" asp-controller="Quiz" asp-action="QuizPreview" asp-route-quizId="@quiz.Quiz.Id">Otvori</a>
                     </div>
                 </div>
             </div>

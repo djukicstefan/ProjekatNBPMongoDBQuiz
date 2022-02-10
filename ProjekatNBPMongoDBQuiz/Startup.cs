@@ -27,7 +27,8 @@ namespace ProjekatNBPMongoDBQuiz
         {
             services.AddControllersWithViews();
             services.AddScoped<IUserService, UserService>();
-            services.AddScoped<IQuizService, QuizService>();                       
+            services.AddScoped<IQuizService, QuizService>();
+            services.AddScoped<ILeaderboardService, LeaderboardService>();
 
             services.AddSession(options =>
             {

@@ -1,9 +1,8 @@
 ﻿@model Quiz
 
 @{
-    ViewData["Title"] = "Izmena kviza";
+    ViewData["Title"] = Model.Title;
     int i = 0, j = 0;
-
     int questionCount = Model.Questions.Count;
     int[] answersCount = new int[questionCount];
 
@@ -13,20 +12,8 @@
 
 <div class="container">
     <div class="row d-flex justify-content-center my-4">
-        <h1 class="text-light">Izmena kviza</h1>
+        <h1 class="text-light">@Model.Title</h1>
     </div>
-
-    <div class="row d-flex justify-content-center mb-4">
-        <div class="col-8 col-sm-4">
-            <label style="color:red">Naziv kviza</label>
-            <input type="text" class="form-control mb-2" value="@Model.Title" id="quiz-title">
-        </div>
-        <div class="col-8 col-sm-3">
-            <label style="color:red">Kategorija</label>
-            <input type="text" class="form-control mb-2" value="@Model.Category" id="quiz-category">
-        </div>
-    </div>
-
 
     <div class="row d-flex justify-content-center">
         <div class="col-12 col-sm-8" id="questions">
@@ -36,7 +23,7 @@
                 <div class="card question-card mb-2">
                     <div class="card-body">
                         <h6 class="card-subtitle mb-2 text-muted">@(i + 1)</h6>
-                        <input type="text" name="qContent_@i" value="@(question.Text)" class="form-control" placeholder="Pitanje...">
+                        <h5 class="card-title">@question.Text</h5>
                     </div>
 
                     <ul class="list-group list-group-flush" id="question_@i">
@@ -44,8 +31,8 @@
                         {
                             <li class="list-group-item">
                                 <div class="form-check">
-                                    <input name="aCheckbox_@(i)_@(j)" class="form-check-input mt-2" type="checkbox" id="checkbox_@(i)_@(j)" @(answer.Correct ? "checked" : "")>
-                                    <input name="aContent_@(i)_@(j)" type="text" class="form-control" value="@(answer.Text)" placeholder="Odgovor...">
+                                    <input name="aCheckbox_@(i)_@(j)" class="form-check-input mt-2" type="checkbox" id="checkbox_@(i)_@(j)">
+                                    <p name="aContent_@(i)_@(j)" class="card-text">@answer.Text</p>
                                 </div>
                             </li>
                             j++;
@@ -59,7 +46,7 @@
 
     <div class="row d-flex justify-content-center mx-4 my-5">
         <div class="col-12 col-sm-8">
-            <button id="btn-submit-quiz" class="btn w-100 btn-success" onclick="SubmitQuiz()">Sačuvaj kviz</button>
+            <button id="btn-submit-quiz" class="btn w-100 btn-success" onclick="SubmitQuiz()">Završi kviz</button>
         </div>
     </div>
 </div>
@@ -68,6 +55,7 @@
     questionInputs = []
     answers = {}
 
+    const startTime = new Date().getTime()
 
     function GetAnswers()
     {
@@ -82,7 +70,6 @@
 
                 answers[i].push({
                     check_box: parent.querySelector(`input[name=aCheckbox_${i}_${j}]`),
-                    content: parent.querySelector(`input[name=aContent_${i}_${j}]`)
                 })
             }
         }
@@ -92,7 +79,7 @@
     {
         parent = document.getElementById('questions');
         for (i = 0; i <@(Model.Questions.Count); ++i) {
-            questionInputs.push(parent.querySelector(`input[name='qContent_${i}']`))
+            questionInputs.push('')
         }
     }
 
@@ -110,18 +97,15 @@
 
         questionIndex = 0
         Quiz = {
-            Title: document.getElementById('quiz-title').value,
-            Category: document.getElementById('quiz-category').value,
             Questions: questionInputs.map((x, index) => ({
-                Text: x.value,
                 Answers: answers[index].map( y => ({
-                    Text: y.content.value,
                     Correct: y.check_box.checked
                 }))
             }))
         }
         Quiz.Id = "@(Model.Id)"
         Quiz.UserId = "@(Model.UserId)"
+        Quiz.Title = `${new Date().getTime() - startTime}`
 
         return JSON.stringify(Quiz)
     }
@@ -131,10 +115,10 @@
         $.ajax({
             type: "POST",
             headers: { "Content-Type": "application/json" },
-            url: '@Url.Action("UpdateQuiz", "Quiz")',
+            url: '@Url.Action("SubmitQuiz", "Quiz")',
             data: GetQuizJSON(),
             success: () => {
-                window.location = "@Url.Action("MineQuizzes", "Quiz", new { changed = true })";
+                window.location = "@Url.Action("QuizPreview", "Quiz", new { quizId = Model.Id })";
             },
             error: (e) => {
                 alert("Something went wrong " + e);

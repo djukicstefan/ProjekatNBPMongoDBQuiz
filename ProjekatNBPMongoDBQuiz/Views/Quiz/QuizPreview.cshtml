@@ -1,0 +1,51 @@
+﻿@model Leaderboard
+
+@{
+    ViewData["Title"] = ViewBag.QuizTitle;
+    int i = 0;
+}
+
+
+<div class="container">
+    <div class="row d-flex justify-content-center my-4">
+        <h1 class="text-light">@ViewBag.QuizTitle</h1>
+    </div>
+
+    <div class="row d-flex justify-content-center mx-4 my-5">
+        <div class="col-12 col-sm-8">
+            <a class="btn w-100 btn-primary" asp-controller="Quiz" asp-action="StartQuiz" asp-route-quizId="@ViewBag.QuizId">Započni kviz</a>
+        </div>
+    </div>
+
+    <div class="row d-flex justify-content-center mx-4 my-5">
+        <div class="col-12 col-sm-8">
+            <h1 class="text-light text-center">Rang lista</h1>
+        </div>
+    </div>
+
+    <div class="row d-flex justify-content-center mx-4 my-5">
+        <div class="col-12 col-sm-8">
+            <table class="table form-bg">
+                <thead>
+                    <tr>
+                        <th style="border-top: none" scope="col">#</th>
+                        <th style="border-top: none" align="center" scope="col">Korisničko ime</th>
+                        <th style="border-top: none" align="center" scope="col">Bodovi</th>
+                        <th style="border-top: none" scope="col">Vreme</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var leaderboardItem in Model.Content.OrderByDescending(x => x.Score).ThenBy(y => y.Time))
+                    {
+                        <tr>
+                            <th style="border-top: none" scope="row">@(++i)</th>
+                            <td>@leaderboardItem.User.Username</td>
+                            <td>@leaderboardItem.Score</td>
+                            <td>@($@"{TimeSpan.FromMilliseconds(leaderboardItem.Time):m\:ss\.fff}")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
