@@ -32,10 +32,8 @@ namespace ProjekatNBPMongoDBQuiz.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public async Task<IActionResult> MineQuizzes(bool updateStatus = false, string quizTitle = "")
-        {
-            if (updateStatus)
-                ViewBag.Message = "Uspešno ste izmenili kviz " + quizTitle;
+        public async Task<IActionResult> MineQuizzes()
+        {            
             List<Quiz> UserQuizzes = null;
             var userId = HttpContext.Session.GetUserId();
             if (!string.IsNullOrEmpty(userId))

@@ -9,8 +9,7 @@
 
     <div class="row d-flex justify-content-center mb-4">
         <div class="col-8 col-sm-4">
-            <input type="text" class="form-control mb-2" placeholder="Naziv kviza..." id="quiz-title">
-            <!--<p class="text-light"> by Name </p>-->
+            <input type="text" class="form-control mb-2" placeholder="Naziv kviza..." id="quiz-title">            
         </div>
         <div class="col-8 col-sm-3">
             <input type="text" class="form-control mb-2" placeholder="Kategorija..." id="quiz-category">
@@ -123,7 +122,7 @@
             url: '@Url.Action("CreateQuiz", "Quiz")',
             data: GetQuizJSON(),
             success: () => {
-                window.location = "@Url.Action("Index", "Home")";
+                window.location = "@Url.Action("MineQuizzes", "Quiz")";
             },
             error: (e) => {
                 alert("Something went wrong " + e);
