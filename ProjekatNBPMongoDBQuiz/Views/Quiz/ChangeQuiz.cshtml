@@ -1,0 +1,63 @@
+﻿@model Quiz
+
+@{
+    ViewData["Title"] = "Izmena kviza";
+    int i = 1, j = 1;
+}
+
+<div class="container">
+    <div class="row d-flex justify-content-center my-4">
+        <h1 class="text-light">Izmena kviza</h1>
+    </div>
+
+    <div class="row d-flex justify-content-center mb-4">
+        <div class="col-8 col-sm-4">
+            <label style="color:red">Naziv kviza</label>
+            <input type="text" class="form-control mb-2" value="@Model.Title" id="quiz-title">
+            <!--<p class="text-light"> by Name </p>-->
+        </div>
+        <div class="col-8 col-sm-3">
+            <label style="color:red">Kategorija</label>
+            <input type="text" class="form-control mb-2" value="@Model.Category" id="quiz-category">
+        </div>
+    </div>
+
+
+    @foreach (var question in Model.Questions)
+    {
+        <div class="row d-flex justify-content-center">
+            <div class="col-12 col-sm-8" id="questions">
+                <div class="card question-card mb-2">
+                    <div class="card-body">
+                        <h6 class="card-subtitle mb-2 text-muted">@i</h6>
+                        <input type="text" name="qContent_@i" class="form-control" value="@question.Text" />
+                    </div>
+                    <ul class="list-group list-group-flush" id="question_@i">
+                    </ul>
+                    @foreach (var answer in question.Answers)
+                    {
+                        <li class="list-group-item">
+                            <div class="form-check">
+                                @if (answer.Correct)
+                                {
+                                    <input name="aCheckbox" class="form-check-input mt-2" type="checkbox" checked>
+                                }
+                                else
+                                {
+                                    <input name="aCheckbox" class="form-check-input mt-2" type="checkbox">
+                                }
+                                <input name="aContent" type="text" class="form-control" value="@answer.Text">
+                            </div>
+                        </li>
+                    }
+                </div>
+            </div>
+        </div>
+        i++;
+    }
+    <div class="row d-flex justify-content-center mx-4 my-5">
+        <div class="col-12 col-sm-8">
+            <button id="btn-update-quiz" class="btn w-100 btn-success" onclick="UpdateQuiz()">Izmeni kviz</button>
+        </div>
+    </div>
+</div>

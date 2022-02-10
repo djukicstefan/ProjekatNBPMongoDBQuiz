@@ -15,6 +15,9 @@ namespace ProjekatNBPMongoDBQuiz.Services
         public async Task<List<Quiz>> GetQuizzesAsync()
             => await _dbContext.QuizCollection.Find(_ => true).ToListAsync();
 
+        public async Task<List<Quiz>> GetUserQuizzes(string userId)
+            => await _dbContext.QuizCollection.FindSync(q => q.UserId == userId).ToListAsync();
+
         public async Task AddQuizAsync(Quiz quiz) 
             => await _dbContext.QuizCollection.InsertOneAsync(quiz);
         

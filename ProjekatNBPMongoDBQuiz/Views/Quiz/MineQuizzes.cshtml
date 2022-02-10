@@ -1,0 +1,31 @@
+﻿@model List<Quiz>
+
+@{
+    ViewData["Title"] = "Moji kvizevi";
+}
+
+<div class="container">
+    <label style="color:red">@ViewBag.Message</label>
+    <div class="row main-row d-flex justify-content-center">
+        @if (Model != null)
+            foreach (var quiz in Model)
+            {
+                <div class="col-3 mt-2 d-flex justify-content-center">
+                    <div class="card card-shadow" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">@quiz.Title</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">@quiz.Category</h6>
+                            <a class="btn btn-primary" asp-controller="Quiz" asp-action="ChangeQuiz" asp-route-quizId="@quiz.Id">Izmeni</a>
+                            <a class="btn btn-danger" asp-controller="Quiz" asp-action="DeleteQuiz" asp-route-quizId="@quiz.Id">Obriši</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        else
+        {
+            <div>
+                <label>Trenutno nemate ni jedan kviz!</label>
+            </div>
+        }
+    </div>
+</div>

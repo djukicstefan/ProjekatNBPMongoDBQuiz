@@ -31,5 +31,37 @@ namespace ProjekatNBPMongoDBQuiz.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+
+        public async Task<IActionResult> MineQuizzes(bool updateStatus = false, string quizTitle = "")
+        {
+            if (updateStatus)
+                ViewBag.Message = "Uspešno ste izmenili kviz " + quizTitle;
+            List<Quiz> UserQuizzes = null;
+            var userId = HttpContext.Session.GetUserId();
+            if (!string.IsNullOrEmpty(userId))
+            {
+                UserQuizzes = await _quizService.GetUserQuizzes(userId);
+            }
+
+            return View(UserQuizzes);
+        }
+
+        public async Task<IActionResult> DeleteQuiz(string quizId)
+        {
+            await _quizService.DeleteQuizAsync(quizId);
+            return RedirectToAction("MineQuizzes", "Quiz");
+        }
+
+        public async Task<IActionResult> ChangeQuiz(string quizId)
+        {
+            var quiz = await _quizService.GetQuizByIdAsync(quizId);
+            return View(quiz);
+        }
+
+        public async Task<IActionResult> UpdateQuiz([FromBody] Quiz quiz)
+        {
+            await _quizService.UpdateQuizAsync(quiz);
+            return RedirectToAction("MineQuizzes", "Quiz", new { updateStatus = true, quizTitle = quiz.Title });
+        }
     }
 }
