@@ -10,17 +10,22 @@
         <h1 class="text-light">Izmena kviza</h1>
     </div>
 
-    <div class="row d-flex justify-content-center mb-4">
-        <div class="col-8 col-sm-4">
-            <label style="color:red">Naziv kviza</label>
-            <input type="text" class="form-control mb-2" value="@Model.Title" id="quiz-title">
-            <!--<p class="text-light"> by Name </p>-->
+    <form asp-action="UpdateQuizInfo" asp-controller="Quiz">
+        <div class="row d-flex justify-content-center mb-4">
+
+            <input type="text" name="quizId" value="@Model.Id" hidden />
+            <div class="col-8 col-sm-4">
+                <label style="color:red">Naziv kviza</label>
+                <input type="text" name="quizTitle" class="form-control mb-2" value="@Model.Title">
+            </div>
+            <div class="col-8 col-sm-3">
+                <label style="color:red">Kategorija</label>
+                <input type="text" name="quizCategory" class="form-control mb-2" value="@Model.Category">
+            </div>
+            <button class="btn btn-success">Izmeni</button>
+
         </div>
-        <div class="col-8 col-sm-3">
-            <label style="color:red">Kategorija</label>
-            <input type="text" class="form-control mb-2" value="@Model.Category" id="quiz-category">
-        </div>
-    </div>
+    </form>
 
 
     @foreach (var question in Model.Questions)
@@ -28,15 +33,23 @@
         <div class="row d-flex justify-content-center">
             <div class="col-12 col-sm-8" id="questions">
                 <div class="card question-card mb-2">
-                    <div class="card-body">
-                        <h6 class="card-subtitle mb-2 text-muted">@i</h6>
-                        <input type="text" name="qContent_@i" class="form-control" value="@question.Text" />
-                    </div>
+                    <form asp-action="UpdateQuestion" asp-controller="Quiz">
+                        <div class="card-body">
+                            <input type="text" name="quizId" value="@Model.Id" hidden />
+                            <input type="text" name="qTextOld" value="@question.Text" hidden />
+                            <h6 class="card-subtitle mb-2 text-muted">@i</h6>
+                            <input type="text" name="qText" class="form-control" value="@question.Text" />
+                        </div>
+                        <button class="btn btn-success">Izmeni</button>
+                    </form>
                     <ul class="list-group list-group-flush" id="question_@i">
                     </ul>
                     @foreach (var answer in question.Answers)
                     {
-                        <li class="list-group-item">
+                        <form asp-action="UpdateAnswer" asp-controller="Quiz">
+                            <input type="text" name="quizId" value="@Model.Id" hidden />
+                            <input type="text" name="questionText" value="@question.Text" hidden />
+                            <input type="text" name="oldContent" value="@answer.Text" hidden />
                             <div class="form-check">
                                 @if (answer.Correct)
                                 {
@@ -48,16 +61,12 @@
                                 }
                                 <input name="aContent" type="text" class="form-control" value="@answer.Text">
                             </div>
-                        </li>
+                            <button class="btn btn-success">Izmeni</button>
+                        </form>
                     }
                 </div>
             </div>
         </div>
         i++;
-    }
-    <div class="row d-flex justify-content-center mx-4 my-5">
-        <div class="col-12 col-sm-8">
-            <button id="btn-update-quiz" class="btn w-100 btn-success" onclick="UpdateQuiz()">Izmeni kviz</button>
-        </div>
-    </div>
+    }    
 </div>

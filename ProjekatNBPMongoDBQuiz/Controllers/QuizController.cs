@@ -58,10 +58,40 @@ namespace ProjekatNBPMongoDBQuiz.Controllers
             return View(quiz);
         }
 
-        public async Task<IActionResult> UpdateQuiz([FromBody] Quiz quiz)
+        public async Task<IActionResult> UpdateAnswer(string quizId, string questionText, string oldContent, string aCheckbox, string aContent)
         {
+            if(oldContent.CompareTo(aContent) != 0)
+            {
+                bool correct = string.IsNullOrEmpty(aCheckbox) ? false : true;
+                var quiz = await _quizService.GetQuizByIdAsync(quizId);
+                var question = quiz.Questions.Find(qu => qu.Text == questionText);
+                var answer = question.Answers.Find(ans => ans.Text == oldContent);
+                answer.Text = aContent;
+                answer.Correct = correct;
+                await _quizService.UpdateQuizAsync(quiz);                                                               
+            }
+
+            return RedirectToAction("ChangeQuiz", "Quiz", new { quizId = quizId });
+        }
+
+        public async Task<IActionResult> UpdateQuestion(string quizId, string qTextOld, string qText)
+        {
+            var quiz = await _quizService.GetQuizByIdAsync(quizId);
+            var question = quiz.Questions.Find(qu => qu.Text == qTextOld);
+            question.Text = qText;
             await _quizService.UpdateQuizAsync(quiz);
-            return RedirectToAction("MineQuizzes", "Quiz", new { updateStatus = true, quizTitle = quiz.Title });
+
+            return RedirectToAction("ChangeQuiz", "Quiz", new { quizId = quizId });
+        }
+
+        public async Task<IActionResult> UpdateQuizInfo(string quizId, string quizTitle, string quizCategory)
+        {
+            var quiz = await _quizService.GetQuizByIdAsync(quizId);
+            quiz.Title = quizTitle;
+            quiz.Category = quizCategory;
+            await _quizService.UpdateQuizAsync(quiz);
+
+            return RedirectToAction("ChangeQuiz", "Quiz", new { quizId = quizId });
         }
     }
 }
