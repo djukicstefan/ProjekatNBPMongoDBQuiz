@@ -1,8 +1,11 @@
 ﻿@model Leaderboard
+@using Microsoft.AspNetCore.Http;
+@using ProjekatNBPMongoDBQuiz.Session;
 
 @{
     ViewData["Title"] = ViewBag.QuizTitle;
     int i = 0;
+    var userId = ViewContext.HttpContext.Session.GetString(SessionKeys.UserId) ?? "";
 }
 
 <div class="container">
@@ -44,7 +47,7 @@
                 <tbody>
                     @foreach (var leaderboardItem in Model.Content.OrderByDescending(x => x.Score).ThenBy(y => y.Time))
                     {
-                        <tr>
+                        <tr class=@(userId == leaderboardItem.User.Id ? "leaderboard-me" : "")>
                             <th style="border-top: none" scope="row">@(++i)</th>
                             <td>@leaderboardItem.User.Username</td>
                             <td>@leaderboardItem.Score</td>
