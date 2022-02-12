@@ -81,6 +81,8 @@ namespace ProjekatNBPMongoDBQuiz.Controllers
             ViewBag.QuizTitle = quiz.Title;
             ViewBag.QuizId = quiz.Id;
 
+            ViewBag.Score = TempData["Score"] as string;
+
             return View(leaderboard);
         }
 
@@ -121,8 +123,8 @@ namespace ProjekatNBPMongoDBQuiz.Controllers
                 });
             }
             
-            ViewBag.Message = $"Uspešno ste završili kviz sa {correctAnswers} od {quiz.Questions.Count} tačnih odgovora!";
-            
+            TempData["Score"] = $"Uspešno ste završili kviz sa {correctAnswers} od {quiz.Questions.Count} tačnih odgovora!"; 
+
             await _leaderboardService.UpdateLeaderboardAsync(leaderboard);
         }
     }
