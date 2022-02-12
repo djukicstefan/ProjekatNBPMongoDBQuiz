@@ -9,44 +9,45 @@
     bool isLoged = userId.Length > 0;
 }
 
-@if (!isLoged)
-{
-    <div class="container d-flex h-75">
+
+<div class="container d-flex h-75">
+    @if (!isLoged)
+    {
         <div class="row align-self-center w-100">
-            <div class="col-4 form-bg mx-auto">
-                <h3 style="color:gold">Dobrodošli na najbolji sajt za igranje kvizeva</h3>
+            <div class="col-8 mx-auto m-top">
+                <h3 class="text-center text-light">Dobrodošli na najbolji sajt za igranje kvizeva</h3>
+                <h4 class="text-center text-light">Da biste igrali ili kreirali kviz prvo morate da se registrujete (ili ulogujete)</h4>
             </div>
         </div>
-    </div>
-}
-else
-{
-    if (Model.Count > 0)
-    {
-        foreach (var quiz in Model)
-        {
-            <div class="col-3 mt-2 d-flex justify-content-center">
-                <div class="card card-shadow" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Naziv: @quiz.Quiz.Title</h5>
-                        <h5 class="card-title">Autor: @quiz.Username</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Kategorija: @quiz.Quiz.Category</h6>
-                        <h6 class="card-subtitle mb-2 text-muted">Broj pitanja: @quiz.Quiz.Questions.Count</h6>
-                        <a class="btn btn-primary" asp-controller="Quiz" asp-action="QuizPreview" asp-route-quizId="@quiz.Quiz.Id">Otvori</a>
-                    </div>
-                </div>
-            </div>
-        }
     }
     else
     {
-        <div class="container d-flex h-75">
-            <div class="row align-self-center w-100">
-                <div class="col-4 form-bg mx-auto">
-                    <h3 style="color:gold">Trenutno nema kvizeva</h3>
+        <div class="row align-self-center w-100">
+            @if (Model.Count > 0)
+            {
+                foreach (var quiz in Model)
+                {
+                    <div class="col-3 mt-2 d-flex justify-content-center">
+                        <div class="card card-shadow" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">@quiz.Quiz.Title</h5>
+                                <h5 class="card-subtitle mb-2 text-muted">Autor: @quiz.Username</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">Kategorija: @quiz.Quiz.Category</h6>
+                                <h6 class="card-subtitle mb-2 text-muted">Broj pitanja: @quiz.Quiz.Questions.Count</h6>
+                                <a class="btn btn-primary" asp-controller="Quiz" asp-action="QuizPreview" asp-route-quizId="@quiz.Quiz.Id">Otvori</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="row align-self-center w-100">
+                    <div class="col-8 mx-auto m-top">
+                        <h3 class="text-center text-light">Trenutno nema kvizeva</h3>
+                    </div>
                 </div>
-            </div>
+            }
         </div>
     }
-}
-
+</div>

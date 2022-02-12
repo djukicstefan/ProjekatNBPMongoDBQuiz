@@ -121,7 +121,9 @@ namespace ProjekatNBPMongoDBQuiz.Controllers
                 });
             }
             
-           await _leaderboardService.UpdateLeaderboardAsync(leaderboard);
+            ViewBag.Message = $"Uspešno ste završili kviz sa {correctAnswers} od {quiz.Questions.Count} tačnih odgovora!";
+            
+            await _leaderboardService.UpdateLeaderboardAsync(leaderboard);
         }
     }
 }
