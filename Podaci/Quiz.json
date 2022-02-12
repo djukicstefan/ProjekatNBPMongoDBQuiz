@@ -1,0 +1,227 @@
+[{
+  "_id": {
+    "$oid": "6207e2e3bc1cfb40a9b8247a"
+  },
+  "Title": "Koliko dobro poznajete glavne gradove?",
+  "Category": "Geografija",
+  "UserId": "6201984658332dddc5dd030c",
+  "Questions": [
+    {
+      "Text": "Koji je glavni grad Srbije?",
+      "Answers": [
+        {
+          "Text": "Bor",
+          "Correct": false
+        },
+        {
+          "Text": "Beograd",
+          "Correct": true
+        },
+        {
+          "Text": "Negotin",
+          "Correct": false
+        },
+        {
+          "Text": "Trstenik",
+          "Correct": false
+        }
+      ]
+    },
+    {
+      "Text": "Koji je glavni grad Nemačke?",
+      "Answers": [
+        {
+          "Text": "Hamburg",
+          "Correct": false
+        },
+        {
+          "Text": "Minhen",
+          "Correct": false
+        },
+        {
+          "Text": "Berlin",
+          "Correct": true
+        },
+        {
+          "Text": "Frankfurt",
+          "Correct": false
+        }
+      ]
+    },
+    {
+      "Text": "Koji je glavni grad Švedske?",
+      "Answers": [
+        {
+          "Text": "Stokholm",
+          "Correct": true
+        },
+        {
+          "Text": "Geteburg",
+          "Correct": false
+        },
+        {
+          "Text": "Halmštad",
+          "Correct": false
+        },
+        {
+          "Text": "Malme",
+          "Correct": false
+        }
+      ]
+    },
+    {
+      "Text": "Koji je glavni grad Indije?",
+      "Answers": [
+        {
+          "Text": "Kolkata",
+          "Correct": false
+        },
+        {
+          "Text": "Mumbaj",
+          "Correct": false
+        },
+        {
+          "Text": "Nju Delhi",
+          "Correct": true
+        },
+        {
+          "Text": "Džajpur",
+          "Correct": false
+        }
+      ]
+    },
+    {
+      "Text": "Koji je glavni grad Japana?",
+      "Answers": [
+        {
+          "Text": "Kjoto",
+          "Correct": false
+        },
+        {
+          "Text": "Tokio",
+          "Correct": true
+        },
+        {
+          "Text": "Saitama",
+          "Correct": false
+        },
+        {
+          "Text": "Jokohoma",
+          "Correct": false
+        }
+      ]
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "6207e811bc1cfb40a9b8247b"
+  },
+  "Title": "C++",
+  "Category": "Informatika i računarstvo",
+  "UserId": "6201984658332dddc5dd030c",
+  "Questions": [
+    {
+      "Text": "Za dinamičko kreiranje objekata koristi se operator",
+      "Answers": [
+        {
+          "Text": "create",
+          "Correct": false
+        },
+        {
+          "Text": "allocate",
+          "Correct": false
+        },
+        {
+          "Text": "new",
+          "Correct": true
+        },
+        {
+          "Text": "Dinamičko kreiranje objekata nije dozvoljeno",
+          "Correct": false
+        }
+      ]
+    },
+    {
+      "Text": "C++ dozvoljava višestruko nasleđivanje klasa",
+      "Answers": [
+        {
+          "Text": "Tačno",
+          "Correct": true
+        },
+        {
+          "Text": "Netačno",
+          "Correct": false
+        }
+      ]
+    },
+    {
+      "Text": "Kako se u C++ -u predstavlja string",
+      "Answers": [
+        {
+          "Text": "Koristi se ključna reč string",
+          "Correct": false
+        },
+        {
+          "Text": "Kao niz karaktera",
+          "Correct": true
+        },
+        {
+          "Text": "String se ne može predstaviti ni na jedan način",
+          "Correct": false
+        }
+      ]
+    },
+    {
+      "Text": "Koje godine je nastao C++?",
+      "Answers": [
+        {
+          "Text": "1992",
+          "Correct": false
+        },
+        {
+          "Text": "1984",
+          "Correct": false
+        },
+        {
+          "Text": "1985",
+          "Correct": true
+        },
+        {
+          "Text": "1980",
+          "Correct": false
+        }
+      ]
+    },
+    {
+      "Text": "Ko je napravio C++",
+      "Answers": [
+        {
+          "Text": "Nikola Tesla",
+          "Correct": false
+        },
+        {
+          "Text": "Bjarne Stroustrup",
+          "Correct": true
+        },
+        {
+          "Text": "Linus Torvalds",
+          "Correct": false
+        },
+        {
+          "Text": "Mark Zakerberg",
+          "Correct": false
+        },
+        {
+          "Text": "Džon Fon Nojman",
+          "Correct": false
+        }
+      ]
+    }
+  ]
+},
+{"_id":{"$oid":"6207ec6994402e54209cb0fd"},"Title":"Nivo 1","Category":"Opšta informisanost","UserId":"6201984658332dddc5dd030c","Questions":[{"Text":"Mizantrop:","Answers":[{"Text":"mrzi ljude","Correct":true},{"Text":"nema osećanja","Correct":false},{"Text":"ne ume da govori","Correct":false},{"Text":"učestvuje u dobrotvornim akcijama","Correct":false}]},{"Text":"Ko podržava aktivnosti štrajkbrehera?","Answers":[{"Text":"poslodavci","Correct":true},{"Text":"predradnici","Correct":false},{"Text":"penzioneri","Correct":false},{"Text":"radnici koji štrajkuju","Correct":false}]},{"Text":"\"Dajte mi dovoljno dugačku polugu i dobar oslonac i pomeriću zemlju\", rekao je:","Answers":[{"Text":"Aristotel","Correct":false},{"Text":"Pitagora","Correct":false},{"Text":"Arhimed","Correct":true},{"Text":"Platon","Correct":false}]},{"Text":"Web strana koja pokriva jedan skup tema, grupisanih po kategorijama, u čijem pisanju aktivno učestvuje više korisnika u nekoj vrsti javne diskusije naziva se:","Answers":[{"Text":"facebook","Correct":false},{"Text":"internet forum","Correct":true},{"Text":"web direktorijum","Correct":false}]},{"Text":"Doživeti svoj \"Vaterlo\" znači:","Answers":[{"Text":"dočekati pra-unuke","Correct":false},{"Text":"živeti preko 100 godina","Correct":false},{"Text":"pretrpeti poraz","Correct":true}]}]},
+{"_id":{"$oid":"6207ed2094402e54209cb0fe"},"Title":"Nivo 2","Category":"Opšta informisanost","UserId":"6201984658332dddc5dd030c","Questions":[{"Text":"Ludvig Vitgenštajn je austrijski:","Answers":[{"Text":"pisac","Correct":false},{"Text":"kompozitor","Correct":false},{"Text":"lekar","Correct":false},{"Text":"filozof","Correct":true}]},{"Text":"Ime mora u kom se nalazi ostrvo Vido je:","Answers":[{"Text":"Jadransko","Correct":false},{"Text":"Jonsko","Correct":true},{"Text":"Egejsko","Correct":false}]},{"Text":"Pitagorina teorema izražava vezu između dužina stranica:","Answers":[{"Text":"pravouglog trougla","Correct":true},{"Text":"pravouglog trapeza","Correct":false},{"Text":"romba","Correct":false},{"Text":"pravougaonika","Correct":false}]},{"Text":"Zmija obmotana oko štapa simbol je:","Answers":[{"Text":"medicine","Correct":true},{"Text":"pravde","Correct":false},{"Text":"obrazovanja","Correct":false},{"Text":"građevinarstva","Correct":false}]},{"Text":"Etna je:","Answers":[{"Text":"vulkan","Correct":true},{"Text":"brana","Correct":false}]}]},
+{"_id":{"$oid":"6207edb594402e54209cb0ff"},"Title":"Nivo 3","Category":"Opšta informisanost","UserId":"6201984658332dddc5dd030c","Questions":[{"Text":"Najviši pravni akt jedne države zove se:","Answers":[{"Text":"zakon","Correct":false},{"Text":"ustav","Correct":true}]},{"Text":"Šta od navedenog ne spada u voće:","Answers":[{"Text":"šljiva","Correct":false},{"Text":"lubenica","Correct":true},{"Text":"nektarina","Correct":false}]},{"Text":"Aboridžini žive","Answers":[{"Text":"u Južnoj Americi","Correct":false},{"Text":"u Australiji","Correct":true},{"Text":"u Abisiniji","Correct":false}]},{"Text":"Kada je nad nekom oblašću anticiklon, vazdušni pritisak:","Answers":[{"Text":"je visok","Correct":true},{"Text":"je nizak","Correct":false}]},{"Text":"Ako izvedemo kraljev(ski) gambit, to znači da igramo:","Answers":[{"Text":"hokej","Correct":false},{"Text":"valcer","Correct":false},{"Text":"odbojku","Correct":false},{"Text":"tenis","Correct":false},{"Text":"šah","Correct":true}]}]}
+]
+
+
